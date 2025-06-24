@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="{{ lang_code }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Projetos') }} - {{ professor.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </head>
+<body>
+    <a href="#main-content" class="skip-link">{{ _('Pular para o conteúdo principal') }}</a>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <h1>{{ professor.nome.split(' ')[0] }} {{ professor.nome.split(' ')[-1] }}</h1>
+                <p>{{ _('Professor e Pesquisador') }}</p>
+            </div>
+            <nav class="nav-main" aria-label="{{ _('Navegação principal') }}">
+                 <ul>
+                    <li><a href="{{ url_for('index', lang_code=lang_code) }}">{{ _('Início') }}</a></li>
+                    <li><a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}">{{ _('Áreas de Pesquisa') }}</a></li>
+                    <li><a href="{{ url_for('projetos', lang_code=lang_code) }}" aria-current="page" class="active">{{ _('Projetos') }}</a></li>
+                    <li><a href="{{ url_for('publicacoes', lang_code=lang_code) }}">{{ _('Publicações') }}</a></li>
+                    <li><a href="{{ url_for('orientacoes', lang_code=lang_code) }}">{{ _('Orientações') }}</a></li>
+                    <li><a href="{{ url_for('contato', lang_code=lang_code) }}">{{ _('Contato') }}</a></li>
+                    <li><a href="{{ url_for('sobre_mim', lang_code=lang_code) }}">{{ _('Sobre Mim') }}</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <div class="lang-switcher">
+                    <a href="{{ url_for(request.endpoint, lang_code='pt') }}" class="{{ 'active' if lang_code == 'pt' }}">{{ _('PT') }}</a> |
+                    <a href="{{ url_for(request.endpoint, lang_code='en') }}" class="{{ 'active' if lang_code == 'en' }}">{{ _('EN') }}</a>
+                </div>
+                <div class="accessibility">
+                    <button id="font-decrease" aria-label="{{ _('Diminuir fonte') }}">A-</button>
+                    <button id="font-reset" aria-label="{{ _('Resetar fonte') }}">A</button>
+                    <button id="font-increase" aria-label="{{ _('Aumentar fonte') }}">A+</button>
+                    <button id="contrast-toggle" aria-label="{{ _('Alternar alto contraste') }}"><i class="fa fa-adjust"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main" class="main-content container">
+        <section class="page-section active"> {# Mantém 'active' para ser exibida #}
+            <h2 class="section-title">{{ _('PROJETOS') }}</h2> {# Alterado para section-title para consistência #}
+            <p class="section-subtitle">
+                {{ _('Explore os projetos de pesquisa, extensão e ensino em desenvolvimento e concluídos.') }}
+            </p>
+
+            <div class="filter-section"> {# Alterado de filter-box para filter-section para consistência com style.css #}
+                <div class="filter-controls">
+                    <label for="type-filter">{{ _('Filtrar por') }}:</label> {# ID alterado para 'type-filter' #}
+                    <select name="tipo" id="type-filter">
+                        <option value="">{{ _('Todos os Tipos') }}</option>
+                        <option value="pesquisa">{{ _('Pesquisa') }}</option>
+                        <option value="extensao">{{ _('Extensão') }}</option>
+                        <option value="ensino">{{ _('Ensino') }}</option>
+                    </select>
+                    <label for="status-filter">{{ _('Status') }}:</label> {# ID alterado para 'status-filter' #}
+                    <select name="status" id="status-filter">
+                        <option value="">{{ _('Todos os Status') }}</option>
+                        <option value="em_andamento">{{ _('Em Andamento') }}</option>
+                        <option value="concluido">{{ _('Concluído') }}</option>
+                        <option value="planejamento">{{ _('Planejamento') }}</option> {# Adicionado status de planejamento #}
+                        <option value="proposto">{{ _('Proposto') }}</option> {# Adicionado status de proposto #}
+                    </select>
+                    <button class="btn btn-secondary" id="clear-filters">{{ _('Limpar') }}</button> {# Adicionado ID #}
+                </div>
+            </div>
+
+            {# O conteúdo dos projetos será carregado e exibido aqui pelo JavaScript (projetos.js) #}
+            <div id="project-list-container">
+                {# Conteúdo dinâmico carregado por projetos.js #}
+                {# Ex: <div class="category-section"><h3 class="category-title">PESQUISA</h3><div class="cards-grid">...</div></div> #}
+                <p class="no-results hidden">{{ _('Carregando projetos...') }}</p>
+            </div>
+
+            <div id="no-results" class="no-results hidden">
+                <i class="fas fa-search" style="font-size: 3rem; color: var(--accent-orange); margin-bottom: 1rem;"></i>
+                <p>{{ _('Nenhum projeto encontrado com os filtros selecionados.') }}</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>{{ professor.nome.split(' ')[0] }} {{ professor.nome.split(' ')[-1] }}</h3>
+                <p>{{ _('Professor e Pesquisador em Computação Afetiva, Robótica Social e Inteligência Artificial.') }}</p>
+                <div class="social-links">
+                    <a href="{{ professor.lattes_url }}" target="_blank" title="{{ _('Lattes') }}"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://linkedin.com/in/{{ professor.orcid }}" target="_blank" title="{{ _('LinkedIn') }}"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="{{ _('ResearchGate') }}"><i class="fab fa-researchgate"></i></a>
+                    <a href="https://orcid.org/{{ professor.orcid }}" target="_blank" title="{{ _('ORCID') }}"><i class="fab fa-orcid"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Links Rápidos') }}</h3>
+                <a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}">{{ _('Áreas de Pesquisa') }}</a>
+                <a href="{{ url_for('projetos', lang_code=lang_code) }}">{{ _('Projetos') }}</a>
+                <a href="{{ url_for('publicacoes', lang_code=lang_code) }}">{{ _('Publicações') }}</a>
+                <a href="{{ url_for('orientacoes', lang_code=lang_code) }}">{{ _('Orientações') }}</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Contato') }}</h3>
+                <p><i class="fas fa-envelope"></i> {{ professor.email }}</p>
+                <p><i class="fas fa-university"></i> {{ _('Universidade do Estado do Rio Grande do Norte (UERN)') }}</p>
+                <p><i class="fas fa-map-marker-alt"></i> {{ _('Natal, Rio Grande do Norte, Brasil') }}</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Áreas de Interesse') }}</h3>
+                {% if areas %} {# Assumindo que 'areas' será passado para o template de projetos se desejar exibi-las #}
+                    {% for area in areas[:4] %}
+                        <a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}#{{ area.id }}">{{ area['nome_' + lang_code] if area['nome_' + lang_code] else area.nome_pt }}</a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; {{ now.year }} {{ professor.nome }}. {{ _('Todos os direitos reservados.') }}</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='projetos.js') }}"></script> {# NOVO SCRIPT PARA FUNCIONALIDADE DE FILTRO #}
+</body>
+</html>

@@ -1,0 +1,921 @@
+/* Reset e variáveis */
+:root {
+    --primary-blue: #3a506b;
+    --accent-orange: #f39c12;
+    --accent-teal: #1abc9c;
+    --light-gray: #f8f9fa;
+    --medium-gray: #6c757d;
+    --dark-gray: #2c3e50;
+    --white: #ffffff;
+    --border-light: #e9ecef;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --background-color: #f6f5f3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Considere adicionar a fonte do Google Fonts aqui */
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-color);
+    transition: all 0.3s ease;
+}
+
+/* Tema de alto contraste */
+/* Tema de alto contraste */
+.high-contrast {
+    --primary-blue: #000000;
+    --light-gray: #ffffff;
+    --background-color: #000000; /* Fundo global preto */
+    --white: #000000; /* Cores que eram brancas viram pretas, cuidado */
+    --accent-teal: #00ff00; /* Verde limão */
+    --accent-orange: #ffff00; /* Amarelo limão */
+    --text-dark: #ffffff; /* Texto que era escuro vira branco */
+    --text-light: #ffffff; /* Texto que era claro vira branco */
+    --border-light: #ffff00; /* Bordas que eram claras viram amarelas */
+}
+
+/* Garante que o body inteiro seja preto no alto contraste */
+.high-contrast body {
+    background-color: #000000; 
+    color: #ffffff; /* Garante que o texto padrão do body seja branco */
+}
+
+/* Elementos específicos que devem ter fundo contrastante e texto legível */
+.high-contrast .hero-section,
+.high-contrast .section { /* Aplica a hero-section e a todas as .section */
+    background-color: #000000; /* Fundo preto para as seções */
+    color: #ffffff; /* Texto branco dentro dessas seções */
+    border-color: #ffff00; /* Bordas amarelas para visibilidade */
+}
+
+/* Garante que títulos e parágrafos dentro de hero-text e outras seções fiquem brancos */
+.high-contrast .hero-text h1,
+.high-contrast .hero-text p,
+.high-contrast .hero-text .subtitle,
+.high-contrast .section-subtitle, /* Subtítulo da seção, como 'Explore as principais...' */
+.high-contrast .card h3,
+.high-contrast .card h4,
+.high-contrast .card p,
+.high-contrast .footer-section p, /* P's no rodapé */
+.high-contrast .footer-bottom p { /* P no rodapé inferior */
+    color: #ffffff !important; /* Força o texto a ser branco. Use !important se a especificidade for um problema. */
+}
+
+/* Garante que os botões tenham cor de texto contrastante */
+.high-contrast .btn {
+    background: #ffff00; /* Botão amarelo */
+    color: #000000; /* Texto preto no botão */
+    border-color: #00ff00; /* Borda verde */
+}
+.high-contrast .btn:hover {
+    background: #00ff00; /* Botão verde no hover */
+    color: #000000;
+}
+.high-contrast .btn-secondary {
+    background: #cccccc; /* Cinza claro para botão secundário */
+    color: #000000;
+}
+.high-contrast .btn-secondary:hover {
+    background: #00ff00;
+    color: #000000;
+}
+
+/* Garante que links no header e footer sejam visíveis */
+.high-contrast .nav-main a,
+.high-contrast .lang-switcher a,
+.high-contrast .accessibility button,
+.high-contrast .social-links a,
+.high-contrast .footer-section a {
+    color: #ffff00 !important; /* Links em amarelo */
+}
+
+.high-contrast .nav-main a:hover,
+.high-contrast .nav-main a.active,
+.high-contrast .lang-switcher a.active,
+.high-contrast .accessibility button:hover,
+.high-contrast .social-links a:hover,
+.high-contrast .footer-section a:hover {
+    color: #000000 !important;
+    background-color: #00ff00 !important; /* Fundo verde no hover */
+}
+
+/* Garante que o professor-illustration tenha um contraste no texto interno */
+.high-contrast .professor-illustration::before {
+    color: #ffff00; /* Torna o emoji amarelo */
+}
+
+/* Títulos das categorias nos cards */
+.high-contrast .category-title {
+    color: #ffff00 !important; /* Títulos de categoria em amarelo */
+    border-color: #ffff00 !important;
+}
+
+/* Seções de filtro */
+.high-contrast .filter-section {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #ffff00;
+}
+
+.high-contrast .filter-controls label {
+    color: #ffffff;
+}
+
+.high-contrast .filter-controls select {
+    background-color: #333333; /* Fundo escuro para select */
+    color: #ffffff; /* Texto branco para select */
+    border-color: #ffff00;
+}
+.high-contrast .filter-controls select:focus {
+    box-shadow: 0 0 0 3px rgba(0,255,0,0.5); /* Sombra verde */
+}
+
+/* Mensagens de 'no-results' */
+.high-contrast .no-results {
+    color: #ffffff;
+    background-color: #000000;
+    border: 1px solid #ffff00;
+}
+
+/* Icones */
+.high-contrast .fas, .high-contrast .fab { /* Seleciona todos os ícones Font Awesome */
+    color: #ffff00; /* Ícones em amarelo, para contrastar */
+}
+/* Header */
+.header {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-gray) 100%);
+    color: var(--white);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+}
+
+.logo p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+}
+
+.nav-main ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-main a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nav-main a:hover,
+.nav-main a.active {
+    background-color: var(--accent-teal);
+    transform: translateY(-2px);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.lang-switcher a {
+    color: var(--white);
+    margin: 0 0.25rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.lang-switcher a.active {
+    color: var(--accent-orange);
+}
+
+.accessibility button {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    padding: 0.4rem 0.6rem;
+    margin: 0 0.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.accessibility button:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--accent-teal);
+}
+
+/* Container principal */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Seções de página */
+.page-section {
+    display: none;
+}
+
+.page-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Section */
+.hero-section {
+    background: var(--white);
+    margin: 2rem 0;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem;
+}
+
+.hero-text {
+    flex: 2;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-text .subtitle {
+    font-size: 1.2rem;
+    color: var(--accent-orange);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.professor-illustration {
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--accent-teal) 0%, #16a085 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 0 15px 35px rgba(26, 188, 156, 0.3);
+}
+
+.professor-illustration::before {
+    content: '👨‍🏫';
+    font-size: 4rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Sections */
+.section {
+    background: var(--white);
+    margin: 2rem 0;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-orange);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-orange), var(--accent-teal));
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-orange), var(--accent-teal));
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+    color: var(--primary-blue);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.card h4 {
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.card p {
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.card .status {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.status.ativo,
+.status.em_andamento {
+    background: rgba(26, 188, 156, 0.1);
+    color: var(--accent-teal);
+}
+
+.status.concluido {
+    background: rgba(243, 156, 18, 0.1);
+    color: var(--accent-orange);
+}
+.status.planejamento,
+.status.proposto { /* Adicionado para status de planejamento */
+    background: rgba(108, 117, 125, 0.1);
+    color: var(--medium-gray);
+}
+
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, var(--accent-teal) 0%, #16a085 100%);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(26, 188, 156, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--medium-gray) 0%, #5a6268 100%);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+}
+
+/* Filter Section */
+.filter-section {
+    background: var(--white);
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-light);
+}
+
+.filter-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-controls label {
+    font-weight: 600;
+    color: var(--primary-blue);
+}
+
+.filter-controls select {
+    padding: 0.6rem 1rem;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.filter-controls select:focus {
+    outline: none;
+    border-color: var(--accent-teal);
+    box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.1);
+}
+
+/* Category Sections */
+.category-section {
+    margin: 3rem 0;
+}
+
+.category-title {
+    font-size: 1.8rem;
+    color: var(--accent-orange);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--accent-orange);
+    display: inline-block;
+}
+
+/* Orientações específicas */
+.orientacoes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.orientacao-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    border: 1px solid var(--border-light);
+}
+
+.orientacao-avatar {
+    flex-basis: 120px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.avatar-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--accent-orange), var(--accent-teal));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: var(--white);
+    font-size: 2rem;
+}
+
+.orientando-name {
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+.orientacao-details {
+    flex-grow: 1;
+}
+
+.orientacao-details h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-blue);
+}
+
+/* Publicações */
+.publication-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.publication-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.publication-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.publication-date {
+    color: var(--accent-orange);
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Contato */
+.contact-form-container {
+    max-width: 600px;
+    margin: 3rem auto 0;
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact-form-container input,
+.contact-form-container textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-form-container input:focus,
+.contact-form-container textarea:focus {
+    outline: none;
+    border-color: var(--accent-teal);
+    box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.1);
+}
+
+/* Sobre mim */
+.bio-section {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    margin: 3rem 0;
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.bio-image {
+    flex: 1;
+    min-width: 250px;
+}
+
+.bio-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.bio-text {
+    flex: 2;
+}
+
+.bio-text h3 {
+    color: var(--primary-blue);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.bio-text h4 {
+    color: var(--accent-orange);
+    margin-bottom: 1.5rem;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-gray) 100%);
+    color: var(--white);
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+
+.footer-section a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a:hover {
+    color: var(--accent-teal);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: var(--accent-teal);
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-main ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .professor-illustration {
+        width: 250px;
+        height: 160px;
+    }
+
+    .section {
+        padding: 2rem 1.5rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-controls select {
+        width: 100%;
+    }
+
+    .orientacao-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .bio-section {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Estilos para elementos hidden/filtered */
+.hidden {
+    display: none !important;
+}
+
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    background: var(--white);
+    border-radius: 15px;
+    margin: 2rem 0;
+}
+/* ... (seu código CSS existente) ... */
+
+/* Publicações - Estilos para a lista detalhada */
+.all-publications-section {
+    margin-top: 3rem; /* Adiciona espaço acima da seção */
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    border: 1px solid var(--border-light);
+}
+
+.publications-list-container {
+    width: 100%;
+    overflow-x: auto; /* Permite rolagem horizontal em telas pequenas */
+}
+
+.publications-list-header,
+.publication-list-item {
+    display: grid;
+    /* Define 4 colunas com tamanhos flexíveis. Ajuste conforme o conteúdo */
+    grid-template-columns: 2fr 1.5fr 0.8fr 0.8fr; /* Título, Revista, Data, DOI/URL */
+    gap: 1rem; /* Espaçamento entre as colunas */
+    padding: 0.8rem 0;
+    align-items: center;
+    border-bottom: 1px solid var(--border-light); /* Linha divisória */
+}
+
+.publications-list-header {
+    font-weight: 700;
+    color: var(--primary-blue);
+    background-color: var(--light-gray); /* Fundo para o cabeçalho */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 1rem 0.8rem; /* Padding maior para o cabeçalho */
+}
+
+.publication-list-item {
+    color: var(--text-dark);
+    padding: 1rem 0.8rem; /* Padding para os itens da lista */
+}
+
+.publication-list-item:nth-child(even) { /* Estilo para linhas alternadas */
+    background-color: var(--light-gray); /* Cor de fundo para linhas pares */
+}
+
+.item-title {
+    font-weight: 600;
+    color: var(--primary-blue);
+}
+
+.item-date,
+.item-journal, /* Nova classe para a coluna da revista */
+.item-link {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+.item-link a {
+    color: var(--accent-teal); /* Cor para os links DOI/Lattes */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.item-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade para a lista de publicações */
+@media (max-width: 768px) {
+    .publications-list-header,
+    .publication-list-item {
+        /* Altera para uma única coluna com rolagem horizontal se necessário */
+        grid-template-columns: 1fr; /* Cada item ocupa sua própria linha */
+        display: block; /* Remove o grid para empilhar */
+        border-bottom: none; /* Remove a borda inferior para evitar duplicação */
+        padding: 1rem;
+    }
+
+    .publications-list-header .header-item,
+    .publication-list-item div {
+        margin-bottom: 0.5rem; /* Espaçamento entre os elementos empilhados */
+    }
+
+    .publications-list-header .header-item:last-child,
+    .publication-list-item div:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Adiciona labels para cada item na lista para clareza em mobile */
+    .publication-list-item .item-title::before { content: "Título: "; font-weight: bold; color: var(--primary-blue); }
+    .publication-list-item .item-journal::before { content: "Revista: "; font-weight: bold; color: var(--primary-blue); }
+    .publication-list-item .item-date::before { content: "Data: "; font-weight: bold; color: var(--primary-blue); }
+    .publication-list-item .item-link::before { content: "Link: "; font-weight: bold; color: var(--primary-blue); }
+
+    .publication-list-item {
+        border: 1px solid var(--border-light);
+        margin-bottom: 1rem;
+        border-radius: 10px;
+    }
+}
+/* ... (seu código CSS existente) ... */

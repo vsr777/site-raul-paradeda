@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="{{ lang_code }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Orientações') }} - {{ professor.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </head>
+<body>
+    <a href="#main-content" class="skip-link">{{ _('Pular para o conteúdo principal') }}</a>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <h1>{{ professor.nome.split(' ')[0] }} {{ professor.nome.split(' ')[-1] }}</h1>
+                <p>{{ _('Professor e Pesquisador') }}</p>
+            </div>
+            <nav class="nav-main" aria-label="{{ _('Navegação principal') }}">
+                 <ul>
+                    <li><a href="{{ url_for('index', lang_code=lang_code) }}">{{ _('Início') }}</a></li>
+                    <li><a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}">{{ _('Áreas de Pesquisa') }}</a></li>
+                    <li><a href="{{ url_for('projetos', lang_code=lang_code) }}">{{ _('Projetos') }}</a></li>
+                    <li><a href="{{ url_for('publicacoes', lang_code=lang_code) }}">{{ _('Publicações') }}</a></li>
+                    <li><a href="{{ url_for('orientacoes', lang_code=lang_code) }}" aria-current="page" class="active">{{ _('Orientações') }}</a></li>
+                    <li><a href="{{ url_for('contato', lang_code=lang_code) }}">{{ _('Contato') }}</a></li>
+                    <li><a href="{{ url_for('sobre_mim', lang_code=lang_code) }}">{{ _('Sobre Mim') }}</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <div class="lang-switcher">
+                    <a href="{{ url_for(request.endpoint, lang_code='pt') }}" class="{{ 'active' if lang_code == 'pt' }}">{{ _('PT') }}</a> |
+                    <a href="{{ url_for(request.endpoint, lang_code='en') }}" class="{{ 'active' if lang_code == 'en' }}">{{ _('EN') }}</a>
+                </div>
+                <div class="accessibility">
+                    <button id="font-decrease" aria-label="{{ _('Diminuir fonte') }}">A-</button>
+                    <button id="font-reset" aria-label="{{ _('Resetar fonte') }}">A</button>
+                    <button id="font-increase" aria-label="{{ _('Aumentar fonte') }}">A+</button>
+                    <button id="contrast-toggle" aria-label="{{ _('Alternar alto contraste') }}"><i class="fa fa-adjust"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main" class="main-content container">
+        <section class="page-section active"> {# Mantém 'active' para ser exibida #}
+            <h2 class="section-title">{{ _('ORIENTAÇÕES') }}</h2> {# Alterado para section-title para consistência #}
+            <p class="section-subtitle">
+                {{ _('Trabalhos de orientação acadêmica em diferentes níveis, desde iniciação científica até doutorado.') }}
+            </p>
+
+            <div class="orientacoes-list">
+                {% for ori in orientacoes %}
+                <article class="orientacao-item">
+                    <div class="orientacao-avatar">
+                        <div class="avatar-icon">
+                            <i class="fas fa-user-graduate"></i> {# Alternativa Font Awesome #}
+                        </div>
+                        <p class="orientando-name">{{ ori.aluno_nome }}</p> 
+                    </div>
+                    <div class="orientacao-details">
+                        <h4>{{ ori['titulo_tese_' + lang_code] if ori['titulo_tese_' + lang_code] else ori.titulo_tese_pt }}</h4>
+                        <p>
+                            <strong>{{ _('Nível') }}:</strong> {{ _(ori.nivel.capitalize()) }} | 
+                            <strong>{{ _('Status') }}:</strong> {{ _(ori.status.capitalize()) }}
+                            {% if ori.data_inicio %}| <strong>{{ _('Início') }}:</strong> {{ ori.data_inicio.strftime('%d/%m/%Y') }} {% endif %} {# data_inicio é agora um objeto date #}
+                            {% if ori.data_defesa %}| <strong>{{ _('Defesa') }}:</strong> {{ ori.data_defesa.strftime('%d/%m/%Y') }} {% endif %} {# data_defesa é agora um objeto date #}
+                        </p>
+                        {# Adicione a descrição da tese se existir no JSON, por exemplo: #}
+                        {# <p>{{ ori['descricao_tese_' + lang_code] if ori['descricao_tese_' + lang_code] else ori.descricao_tese_pt }}</p> #}
+                    </div>
+                </article>
+                {% else %}
+                <p>{{ _('Nenhuma orientação encontrada no momento.') }}</p>
+                {% endfor %}
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>{{ professor.nome.split(' ')[0] }} {{ professor.nome.split(' ')[-1] }}</h3>
+                <p>{{ _('Professor e Pesquisador em Computação Afetiva, Robótica Social e Inteligência Artificial.') }}</p>
+                <div class="social-links">
+                    <a href="{{ professor.lattes_url }}" target="_blank" title="{{ _('Lattes') }}"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://linkedin.com/in/{{ professor.orcid }}" target="_blank" title="{{ _('LinkedIn') }}"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="{{ _('ResearchGate') }}"><i class="fab fa-researchgate"></i></a>
+                    <a href="https://orcid.org/{{ professor.orcid }}" target="_blank" title="{{ _('ORCID') }}"><i class="fab fa-orcid"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Links Rápidos') }}</h3>
+                <a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}">{{ _('Áreas de Pesquisa') }}</a>
+                <a href="{{ url_for('projetos', lang_code=lang_code) }}">{{ _('Projetos') }}</a>
+                <a href="{{ url_for('publicacoes', lang_code=lang_code) }}">{{ _('Publicações') }}</a>
+                <a href="{{ url_for('orientacoes', lang_code=lang_code) }}">{{ _('Orientações') }}</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Contato') }}</h3>
+                <p><i class="fas fa-envelope"></i> {{ professor.email }}</p>
+                <p><i class="fas fa-university"></i> {{ _('Universidade do Estado do Rio Grande do Norte (UERN)') }}</p>
+                <p><i class="fas fa-map-marker-alt"></i> {{ _('Natal, Rio Grande do Norte, Brasil') }}</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Áreas de Interesse') }}</h3>
+                {% if areas %} 
+                    {% for area in areas[:4] %}
+                        <a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}#{{ area.id }}">{{ area['nome_' + lang_code] if area['nome_' + lang_code] else area.nome_pt }}</a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; {{ now.year }} {{ professor.nome }}. {{ _('Todos os direitos reservados.') }}</p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

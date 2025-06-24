@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="{{ lang_code }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Contato') }} - {{ professor.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </head>
+<body>
+    <a href="#main-content" class="skip-link">{{ _('Pular para o conteúdo principal') }}</a>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <h1>{{ professor.nome.split(' ')[0] }} {{ professor.nome.split(' ')[-1] }}</h1>
+                <p>{{ _('Professor e Pesquisador') }}</p>
+            </div>
+            <nav class="nav-main" aria-label="{{ _('Navegação principal') }}">
+                 <ul>
+                    <li><a href="{{ url_for('index', lang_code=lang_code) }}">{{ _('Início') }}</a></li>
+                    <li><a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}">{{ _('Áreas de Pesquisa') }}</a></li>
+                    <li><a href="{{ url_for('projetos', lang_code=lang_code) }}">{{ _('Projetos') }}</a></li>
+                    <li><a href="{{ url_for('publicacoes', lang_code=lang_code) }}">{{ _('Publicações') }}</a></li>
+                    <li><a href="{{ url_for('orientacoes', lang_code=lang_code) }}">{{ _('Orientações') }}</a></li>
+                    <li><a href="{{ url_for('contato', lang_code=lang_code) }}" aria-current="page" class="active">{{ _('Contato') }}</a></li>
+                    <li><a href="{{ url_for('sobre_mim', lang_code=lang_code) }}">{{ _('Sobre Mim') }}</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <div class="lang-switcher">
+                    <a href="{{ url_for(request.endpoint, lang_code='pt') }}" class="{{ 'active' if lang_code == 'pt' }}">{{ _('PT') }}</a> |
+                    <a href="{{ url_for(request.endpoint, lang_code='en') }}" class="{{ 'active' if lang_code == 'en' }}">{{ _('EN') }}</a>
+                </div>
+                <div class="accessibility">
+                    <button id="font-decrease" aria-label="{{ _('Diminuir fonte') }}">A-</button>
+                    <button id="font-reset" aria-label="{{ _('Resetar fonte') }}">A</button>
+                    <button id="font-increase" aria-label="{{ _('Aumentar fonte') }}">A+</button>
+                    <button id="contrast-toggle" aria-label="{{ _('Alternar alto contraste') }}"><i class="fa fa-adjust"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main" class="main-content container">
+        <section class="page-section active"> {# Mantém 'active' para ser exibida #}
+            <h2 class="section-title">{{ _('CONTATO') }}</h2> {# Alterado para section-title para consistência #}
+            <p class="section-subtitle"> {# Alterado para section-subtitle para consistência #}
+                {{ _('Tem alguma dúvida, sugestão ou proposta? Utilize o formulário abaixo para entrar em contato.') }}
+            </p>
+
+            <div class="contact-form-container">
+                <form id="contact-form"> {# Removido method="POST" para gerenciar via Fetch API #}
+                    <div class="form-group">
+                        <input type="text" id="nome" name="nome" placeholder="{{ _('Nome completo') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="{{ _('E-mail') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="assunto" name="assunto" placeholder="{{ _('Assunto') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="mensagem" name="mensagem" rows="8" placeholder="{{ _('Mensagem') }}" required></textarea>
+                    </div>
+                    <div class="form-group form-submit-button" style="text-align: center;"> {# Adicionado text-align para centralizar o botão #}
+                        <button type="submit" class="btn" style="padding: 1rem 3rem;">
+                            <i class="fas fa-paper-plane" style="margin-right: 0.5rem;"></i>
+                            {{ _('Enviar Mensagem') }}
+                        </button>
+                    </div>
+                    <div id="form-status" style="margin-top: 15px; text-align: center;"></div> {# Centralizado o status da mensagem #}
+                </form>
+            </div>
+
+            <div class="section" style="margin-top: 3rem; padding: 2rem; background: var(--light-gray); border-radius: 15px; text-align: center;"> {# Estilizado o div de informações de contato #}
+                <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">{{ _('Informações de Contato') }}</h3>
+                <p><i class="fas fa-envelope" style="color: var(--accent-orange); margin-right: 0.5rem;"></i> {{ professor.email }}</p>
+                <p><i class="fas fa-university" style="color: var(--accent-orange); margin-right: 0.5rem;"></i> {{ _('Universidade do Estado do Rio Grande do Norte (UERN)') }}</p>
+                <p><i class="fas fa-map-marker-alt" style="color: var(--accent-orange); margin-right: 0.5rem;"></i> {{ _('Natal, Rio Grande do Norte, Brasil') }}</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>{{ professor.nome.split(' ')[0] }} {{ professor.nome.split(' ')[-1] }}</h3>
+                <p>{{ _('Professor e Pesquisador em Computação Afetiva, Robótica Social e Inteligência Artificial.') }}</p>
+                <div class="social-links">
+                    <a href="{{ professor.lattes_url }}" target="_blank" title="{{ _('Lattes') }}"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://linkedin.com/in/{{ professor.orcid }}" target="_blank" title="{{ _('LinkedIn') }}"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="{{ _('ResearchGate') }}"><i class="fab fa-researchgate"></i></a>
+                    <a href="https://orcid.org/{{ professor.orcid }}" target="_blank" title="{{ _('ORCID') }}"><i class="fab fa-orcid"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Links Rápidos') }}</h3>
+                <a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}">{{ _('Áreas de Pesquisa') }}</a>
+                <a href="{{ url_for('projetos', lang_code=lang_code) }}">{{ _('Projetos') }}</a>
+                <a href="{{ url_for('publicacoes', lang_code=lang_code) }}">{{ _('Publicações') }}</a>
+                <a href="{{ url_for('orientacoes', lang_code=lang_code) }}">{{ _('Orientações') }}</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Contato') }}</h3>
+                <p><i class="fas fa-envelope"></i> {{ professor.email }}</p>
+                <p><i class="fas fa-university"></i> {{ _('Universidade do Estado do Rio Grande do Norte (UERN)') }}</p>
+                <p><i class="fas fa-map-marker-alt"></i> {{ _('Mossoró, Rio Grande do Norte, Brasil') }}</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Áreas de Interesse') }}</h3>
+                {% if areas %} {# Assumindo que 'areas' será passado para o template de contato se desejar exibi-las #}
+                    {% for area in areas[:4] %}
+                        <a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}#{{ area.id }}">{{ area['nome_' + lang_code] if area['nome_' + lang_code] else area.nome_pt }}</a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; {{ now.year }} {{ professor.nome }}. {{ _('Todos os direitos reservados.') }}</p>
+        </div>
+    </footer>
+
+    <script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        const statusDiv = document.getElementById('form-status');
+
+        statusDiv.textContent = '{{ _("Enviando...") }}';
+        statusDiv.style.color = 'var(--accent-teal)'; // Usar variável CSS para cor
+
+        fetch('/api/contato', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                statusDiv.textContent = '{{ _("Mensagem enviada com sucesso!") }}';
+                statusDiv.style.color = 'var(--accent-teal)'; // Usar variável CSS para cor
+                form.reset();
+            } else {
+                statusDiv.textContent = '{{ _("Erro ao enviar mensagem:") }} ' + result.error;
+                statusDiv.style.color = 'red';
+            }
+        })
+        .catch(error => {
+            statusDiv.textContent = '{{ _("Erro de conexão. Tente novamente.") }}';
+            statusDiv.style.color = 'red';
+            console.error('Error:', error);
+        });
+    });
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+{
+  "professor": {
+    "id": 1,
+    "nome": "RAUL PARADEDA",
+    "email": "raulparadeda@uern.br",
+    "titulacao": "Doutorado em Ciência da Computação",
+    "lattes_url": "http://lattes.cnpq.br/7719675103212706",
+    "foto_path": "/static/img/professor.jpg",
+    "orcid": "0000-0002-4031-6275",
+    "bio_pt": "Sou graduado em Ciência da Computação pela Universidade Católica de Pelotas (2004), com mestrado em Sistemas e Computação pela Universidade Federal do Rio Grande do Norte (2007) e doutorado em Engenharia Informática e de Computadores pelo Instituto Superior Técnico da Universidade de Lisboa (2020). Atualmente, atuo como professor adjunto na Universidade do Estado do Rio Grande do Norte (UERN) e como pesquisador pós-doutorado na Escola de Artes, Ciências e Humanidades da USP. Minha pesquisa se concentra em Computação Afetiva, com ênfase no uso de Robôs Sociais, Interação Humano-Robô, Agentes Virtuais e Identificação de Personalidade por meio de Jogos e Narrativas Digitais.",
+    "bio_en": "I have a degree in Computer Science from the Catholic University of Pelotas (2004), a master's degree in Systems and Computing from the Federal University of Rio Grande do Norte (2007), and a PhD in Informatics and Computer Engineering from the Instituto Superior Técnico of the University of Lisbon (2020). Currently, I work as an Assistant professor at the State University of Rio Grande do Norte (UERN) and as a postdoctoral researcher at the School of Arts, Sciences and Humanities at USP. My research focuses on Affective Computing, with an emphasis on the use of Social Robots, Human-Robot Interaction, Virtual Agents, and Personality Identification through Games and Digital Narratives. ",
+    "updated_at": "2025-06-24T02:33:09.079069Z"
+  },
+  "areas_pesquisa": [
+    {
+      "id": 1,
+      "nome_pt": "Inteligência Artificial",
+      "nome_en": "Artificial Intelligence",
+      "descricao_pt": "Estudo de IA e aprendizado de máquina.",
+      "descricao_en": "Study of AI and machine learning.",
+      "imagem": "inteligencia-artificial.png"
+    },
+    {
+      "id": "robotica",
+      "nome_pt": "Robótica",
+      "nome_en": "Robotics",
+      "descricao_pt": "Pesquisa em robôs móveis, robótica social e sistemas autônomos.",
+      "descricao_en": "Research in mobile robots, social robotics, and autonomous systems.",
+      "imagem": "robotica.png"
+    },
+    {
+      "id": "ihc",
+      "nome_pt": "Interação Humano-Computador",
+      "nome_en": "Human-Computer Interaction",
+      "descricao_pt": "Estudo de interfaces, usabilidade e a experiência do usuário.",
+      "descricao_en": "Study of interfaces, usability, and user experience.",
+      "imagem": "ihc.png"
+    }
+  ],
+  "publicacoes": [
+    {
+      "titulo_pt": "VOCÊ TOMARIA UMA VACINA DE UM ROBÔ? PERSPECTIVAS ESPECULATIVAS SOBRE ROBÔS ADMINISTRANDO VACINAS",
+      "revista": "FOCO",
+      "resumo_pt": "Esta exploração especulativa prevê um cenário futuro que levanta a questão: \"Você receberia uma vacina de um robô?\". Investigamos a aceitação hipotética do agente robótico Pepper e de um braço mecânico para aplicar a vacina. As percepções dos participantes foram avaliadas por meio de uma pesquisa online usando cenários fictícios, examinando aparência, simpatia, inteligência percebida, segurança e tempos de espera. Os resultados indicam uma disposição para aceitar vacinas de agentes robóticos, particularmente robôs sociais, destacando os principais fatores de influência. Este estudo enriquece as discussões na interseção entre tecnologias em saúde e interação humano-robô, oferecendo insights para pesquisas futuras na área de tecnologias em saúde.",
+      "titulo_en": "WOULD YOU RECEIVE A VACCINE FROM A ROBOT? SPECULATIVE PERSPECTIVES ON ROBOTS ADMINISTERING VACCINES",
+      "abstract_en": "This speculative exploration envisions a future scenario that poses the question, “Would You Receive a Vaccine from a Robot?”. We investigate the hypothetical acceptance of the robotic agent Pepper and a mechanical arm to apply the vaccine. Participants' perceptions were assessed through an online survey using fictitious scenarios, examining appearance, likability, perceived intelligence, safety, and waiting times. Findings indicate a willingness to accept vaccines from robotic agents, particularly social robots, highlighting key influencing factors. This study enriches discussions at the intersection of health technologies and human-robot interaction, offering insights for future research in the area of healthcare technologies.",
+      "data_publicacao": "2024-10-17",
+      "doi": "https://doi.org/10.54751/revistafoco.v17n10-083",
+      "lattes_url": "https://buscatextual.cnpq.br/buscatextual/visualizacv.do",
+      "is_featured": true,
+      "id": 1,
+      "professor_id": 1
+    },
+    {
+      "titulo_pt": "IA Generativa na Educação: Um Estudo das Expectativas de Estudantes de Graduação em relação ao ChatGPT",
+      "revista": "RENOLE",
+      "resumo_pt": "Este estudo investigou as percepções e expectativas de estudantes de graduação em relação ao uso do ChatGPT, um modelo generativo de IA, em seu processo educacional. Dois questionários foram empregados: um baseado no Modelo de Aceitação de Tecnologia, medindo a utilidade percebida e a facilidade de uso; e outro, com perguntas sugeridas pelo ChatGPT e validadas por meio de análise fatorial, explorando preocupações específicas. Os resultados revelaram que, embora 74% dos participantes tenham usado o ChatGPT, com 77% dos usuários classificando-o como eficaz ou muito eficaz, eles enfatizaram a importância de manter a interação humana e fontes de informação diversificadas em ambientes educacionais. Os alunos expressaram entusiasmo pelo potencial do ChatGPT para fornecer suporte personalizado, mas também preocupações sobre sua confiabilidade e implicações éticas.",
+      "titulo_en": "Generative AI in Education: A Study of Undergraduate Students’ Expectations of ChatGPT",
+      "abstract_en": "This study investigated undergraduate students' perceptions and expectations regarding using ChatGPT, a generative AI model, in their educational process. Two questionnaires were employed: one based on the Technology Acceptance Model, measuring perceived usefulness and ease of use; and another, with questions suggested by ChatGPT and validated through factor analysis, exploring specific concerns. The findings revealed that while 74% of participants had used ChatGPT, with 77% of users rating it as effective or very effective, they emphasized the importance of maintaining human interaction and diverse information sources in educational settings. Students expressed enthusiasm for ChatGPT's potential to provide personalized support but also concerns about its reliability and ethical implications. ",
+      "data_publicacao": "2025-01-06",
+      "doi": "https://doi.org/10.22456/1679-1916.144982",
+      "lattes_url": "https://buscatextual.cnpq.br/buscatextual/visualizacv.do",
+      "is_featured": false,
+      "id": 2,
+      "professor_id": 1
+    }
+  ],
+  "projetos": [
+    {
+      "titulo_pt": " Inclusão e Desenvolvimento de Pessoas com Deficiência: Rede Intersetorial e Interinstitucional de Laboratórios Multiusuários de Tecnologia Assistiva (TECincluir)",
+      "tipo": "pesquisa",
+      "status": "em_andamento",
+      "descricao_pt": "Proposto pelo Centro de Inovação Tecnológica e Educação Inclusiva da UFRRJ, emparceria com o Laboratório de Tecnologia Assistiva e Inclusão do INT, o Laboratório deTecnologia Assistiva do Centro de Educação/UFRN e o Laboratório de AprendizagemRobótica (LAR/UERN), este projeto tem como foco desenvolver e validar soluções deTecnologia Assistiva (TA) que auxiliem o desenvolvimento de pessoas com deficiênciaintelectual, autismo e deficiência múltipla Síndrome Congênita do Zika Vírus, e, nasequência, implementar e avaliar ações de formação continuada de profissionais que usama TA considerando a inclusão, o desenho universal, a acessibilidade comunicacional e aintersetorialidade. A proposta adotará um design participativo e colaborativo, serádesenvolvida em dez fases. O modelo biopsicossocial da CIF, contido na LBI, será usadopara avaliar funcionalidade das pessoas com deficiência nas atividades para posteriorprojeção das soluções a serem desenvolvidas. A pesquisa traz inovação científica,tecnológica e social na área de TA e poderá contribuir com a qualidade de vida de pessoascom deficiência e a transferência de tecnologia e conhecimento sobre TA..",
+      "titulo_en": "Inclusion and Development of People with Disabilities: Intersectoral and Interinstitutional Network of Multiuser Laboratories of Assistive Technology (TECincluir)",
+      "descricao_en": "Proposed by the Center for Technological Innovation and Inclusive Education of UFRRJ, in partnership with the Laboratory of Assistive Technology and Inclusion of INT, the Laboratory of Assistive Technology of the Center for Education/UFRN and the Laboratory of Robotics Learning (LAR/UERN), this project focuses on developing and validating Assistive Technology (AT) solutions that aid the development of people with intellectual disabilities, autism and multiple disabilities Congenital Zika Virus Syndrome, and, subsequently, implementing and evaluating continuing education actions for professionals who use AT considering inclusion, universal design, communication accessibility and intersectorality. The proposal will adopt a participatory and collaborative design and will be developed in ten phases. The biopsychosocial model of the ICF, contained in the LBI, will be used to assess the functionality of people with disabilities in activities for later designing the solutions to be developed. The research brings scientific, technological and social innovation to the area of ​​AT and may contribute to the quality of life of people with disabilities and the transfer of technology and knowledge about AT.",
+      "data_inicio": "2024-02-24",
+      "data_termino": null,
+      "id": 2,
+      "professor_id": 1
+    },
+    {
+      "titulo_pt": " Ações para divulgação da ciência e tecnologia",
+      "tipo": "extensao",
+      "status": "concluido",
+      "descricao_pt": "Este projeto tem como objetivo planejar, desenvolver e executar ações para fomentar e divulgar assuntos, conceitos, novidades e tudo mais que for relacionado às áreas de ciência e tecnologia.",
+      "titulo_en": "Actions to promote science and technology",
+      "descricao_en": "This project aims to plan, develop and execute actions to promote and disseminate subjects, concepts, news and everything else related to the areas of science and technology.",
+      "data_inicio": "2023-03-24",
+      "data_termino": "2024-03-24",
+      "id": 3,
+      "professor_id": 1
+    },
+    {
+      "titulo_pt": "AI Quest: um jogo em HTML5 para aprendizagem de algoritmos",
+      "tipo": "ensino",
+      "status": "concluido",
+      "descricao_pt": "Em diversas áreas do conhecimento as técnicas de construção de algoritmos são de grande importância para resolução de problemas. Entretanto, há um tabu entre os alunos que cursam esta disciplina, devido a alguns problemas como a carência no raciocínio lógico e a falta de conhecimento nas ferramentas para a implementação desses algoritmos. Por esse motivo, esta disciplina apresenta um dos índices mais elevados de reprovações. Esse projeto se propõe a desenvolver um jogo educacional que servirá como ferramenta para o auxílio ao ensino desta disciplina. Ele trabalhará de maneira lúdica para que o jogador possa aprender conceitos básicos da mesma. Para a construção dessa ferramenta pretende-se empregar tecnologias Web como a especificação do HTML5, JavaScript e engine de jogos, como CraftyJs.",
+      "titulo_en": "AI Quest: an HTML5 game for learning algorithms",
+      "descricao_en": "In several areas of knowledge, algorithm construction techniques are of great importance for problem-solving. However, there is a taboo among students who take this subject, due to some problems such as the lack of logical reasoning and the lack of knowledge of the tools for implementing these algorithms. For this reason, this subject has one of the highest failure rates. This project aims to develop an educational game that will serve as a tool to aid in teaching this subject. It will work in a playful way so that the player can learn basic concepts of it. To build this tool, we intend to use Web technologies such as the HTML5 specification, JavaScript and game engines, such as CraftyJs.",
+      "data_inicio": "2012-02-24",
+      "data_termino": "2014-02-24",
+      "id": 4,
+      "professor_id": 1
+    }
+  ],
+  "orientacoes": [
+    {
+      "aluno_nome": "Luiziane Paulino dos Santos",
+      "nivel": "Graduação",
+      "status": "Em andamento",
+      "titulo_tese_pt": "O uso da robótica social no desenvolvimento das habilidades sociais das crianças com autismo na sala de aula regular.",
+      "titulo_tese_en": "The use of social robotics in the development of social skills of children with autism in the regular classroom.",
+      "data_inicio": "2025-02-06",
+      "data_defesa": null,
+      "id": 1,
+      "professor_id": 1
+    },
+    {
+      "aluno_nome": "Carlos Eduardo Almeida Lucena de Sousa",
+      "nivel": "Graduação",
+      "status": "Concluído",
+      "titulo_tese_pt": "Robô com empatia: A integração de um Sistema de Reconhecimento de emoções em um agente robótico",
+      "titulo_tese_en": "Robot with empathy: The integration of an emotion recognition system into a robotic agent",
+      "data_inicio": "2024-02-01",
+      "data_defesa": "2025-11-27",
+      "id": 2,
+      "professor_id": 1
+    }
+  ],
+  "contatos": [
+    {
+      "id": 1,
+      "nome": "Visitante 1",
+      "email": "visitante1@email.com",
+      "assunto": "Dúvida sobre Publicação",
+      "mensagem": "Gostaria de mais detalhes sobre sua publicação mais recente.",
+      "data_envio": "2025-06-23T16:43:17.234394Z",
+      "lido": false,
+      "professor_id": 1
+    },
+    {
+      "id": 2,
+      "nome": "asdda",
+      "email": "diodlive797@gmail.com",
+      "assunto": "asdda",
+      "mensagem": "sadas",
+      "data_envio": "2025-06-24T02:06:15.564375Z",
+      "lido": false,
+      "professor_id": 1
+    },
+    {
+      "id": 3,
+      "nome": "asdsa",
+      "email": "diodlive797@gmail.com",
+      "assunto": "asdasd",
+      "mensagem": "asdsad",
+      "data_envio": "2025-06-24T02:08:07.158304Z",
+      "lido": false,
+      "professor_id": 1
+    },
+    {
+      "id": 4,
+      "nome": "Teste",
+      "email": "Teste@gmail.com",
+      "assunto": "Site",
+      "mensagem": "Gostei muito do seu site!",
+      "data_envio": "2025-06-24T03:02:46.740520Z",
+      "lido": false,
+      "professor_id": 1
+    },
+    {
+      "id": 5,
+      "nome": "Teste",
+      "email": "Teste@gmail.com",
+      "assunto": "Site",
+      "mensagem": "Gostei muito do seu site!!",
+      "data_envio": "2025-06-24T03:04:54.621665Z",
+      "lido": false,
+      "professor_id": 1
+    }
+  ],
+  "admin_users": [
+    {
+      "username": "admin",
+      "password_hash": "scrypt:32768:8:1$iFtG9RehG2ugZtEq$cb2dba2ae0603c001f8dcd35612024a907a7f98610447fad1536f9e48ad597cd2a518b64a880c3f08c2de93e10ddfcf80433a6bb6cf018e8af9ab5d6441d6a67"
+    }
+  ]
+}

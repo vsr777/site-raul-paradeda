@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="{{ lang_code }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Publicações') }} - {{ professor.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">{{ _('Pular para o conteúdo principal') }}</a>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <h1>{{ professor.nome.split(' ')[0] }} {{ professor.nome.split(' ')[-1] }}</h1>
+                <p>{{ _('Professor e Pesquisador') }}</p>
+            </div>
+            <nav class="nav-main" aria-label="{{ _('Navegação principal') }}">
+                 <ul>
+                    <li><a href="{{ url_for('index', lang_code=lang_code) }}">{{ _('Início') }}</a></li>
+                    <li><a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}">{{ _('Áreas de Pesquisa') }}</a></li>
+                    <li><a href="{{ url_for('projetos', lang_code=lang_code) }}">{{ _('Projetos') }}</a></li>
+                    <li><a href="{{ url_for('publicacoes', lang_code=lang_code) }}" aria-current="page" class="active">{{ _('Publicações') }}</a></li>
+                    <li><a href="{{ url_for('orientacoes', lang_code=lang_code) }}">{{ _('Orientações') }}</a></li>
+                    <li><a href="{{ url_for('contato', lang_code=lang_code) }}">{{ _('Contato') }}</a></li>
+                    <li><a href="{{ url_for('sobre_mim', lang_code=lang_code) }}">{{ _('Sobre Mim') }}</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <div class="lang-switcher">
+                    <a href="{{ url_for(request.endpoint, lang_code='pt') }}" class="{{ 'active' if lang_code == 'pt' }}">{{ _('PT') }}</a> |
+                    <a href="{{ url_for(request.endpoint, lang_code='en') }}" class="{{ 'active' if lang_code == 'en' }}">{{ _('EN') }}</a>
+                </div>
+                <div class="accessibility">
+                    <button id="font-decrease" aria-label="{{ _('Diminuir fonte') }}">A-</button>
+                    <button id="font-reset" aria-label="{{ _('Resetar fonte') }}">A</button>
+                    <button id="font-increase" aria-label="{{ _('Aumentar fonte') }}">A+</button>
+                    <button id="contrast-toggle" aria-label="{{ _('Alternar alto contraste') }}"><i class="fa fa-adjust"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main" class="main-content container">
+        <section class="page-section active"> {# Mantém 'active' para ser exibida #}
+            <h2 class="section-title">{{ _('PUBLICAÇÕES') }}</h2> {# Alterado para section-title para consistência #}
+            <p class="section-subtitle">
+                {{ _('Artigos, papers e publicações científicas em revistas e conferências nacionais e internacionais.') }}
+            </p>
+
+            <div class="publication-grid cards-grid">
+                {% for pub in publicacoes %}
+                <article class="card publication-card">
+                    <h4>{{ pub['titulo_' + lang_code] if pub['titulo_' + lang_code] else pub.titulo_pt }}</h4>
+                    <span class="publication-date">
+                        {{ pub.revista }} - 
+                        {{ pub.data_publicacao.strftime('%Y') }} {# Now data_publicacao is a date object #}
+                    </span>
+                    <p>{{ pub['resumo_' + lang_code] if pub['resumo_' + lang_code] else pub.resumo_pt }}</p>
+                    <a href="{{ pub.doi if pub.doi else '#' }}" target="_blank" class="btn">{{ _('Ver publicação') }}</a>
+                </article>
+                {% else %}
+                <p>{{ _('Nenhuma publicação encontrada no momento.') }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="lattes-button-container" style="text-align: center; margin: 3rem 0;">
+                <a href="{{ professor.lattes_url }}" class="btn" target="_blank" style="padding: 1rem 3rem; font-size: 1.1rem;">
+                    <i class="fas fa-external-link-alt" style="margin-right: 0.5rem;"></i>
+                    {{ _('Acessar Curriculum Lattes') }}
+                </a>
+            </div>
+
+            <div class="section all-publications-section">
+                <h3 class="category-title">{{ _('TODAS AS PUBLICAÇÕES (Lista Detalhada)') }}</h3> {# Renomeado para clareza #}
+                <div class="publications-list-container">
+                    <div class="publications-list-header">
+                        <div class="header-item">{{ _('Título') }}</div>
+                        <div class="header-item">{{ _('Revista') }}</div> {# Adicionada coluna para Revista #}
+                        <div class="header-item">{{ _('Data') }}</div>
+                        <div class="header-item">{{ _('DOI/URL') }}</div>
+                    </div>
+                    {% for pub in publicacoes %}
+                    <div class="publication-list-item">
+                        <div class="item-title">{{ pub['titulo_' + lang_code] if pub['titulo_' + lang_code] else pub.titulo_pt }}</div>
+                        <div class="item-journal">{{ pub.revista }}</div> {# Exibindo Revista #}
+                        <div class="item-date">{{ pub.data_publicacao.strftime('%d/%m/%Y') }}</div> {# Formatando a data completa #}
+                        <div class="item-link">
+                            {% if pub.doi %}
+                                <a href="{{ pub.doi }}" target="_blank">DOI</a>
+                            {% elif pub.lattes_url %}
+                                <a href="{{ pub.lattes_url }}" target="_blank">Lattes</a>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>{{ professor.nome.split(' ')[0] }} {{ professor.nome.split(' ')[-1] }}</h3>
+                <p>{{ _('Professor e Pesquisador em Computação Afetiva, Robótica Social e Inteligência Artificial.') }}</p>
+                <div class="social-links">
+                    <a href="{{ professor.lattes_url }}" target="_blank" title="{{ _('Lattes') }}"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://linkedin.com/in/{{ professor.orcid }}" target="_blank" title="{{ _('LinkedIn') }}"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="{{ _('ResearchGate') }}"><i class="fab fa-researchgate"></i></a>
+                    <a href="https://orcid.org/{{ professor.orcid }}" target="_blank" title="{{ _('ORCID') }}"><i class="fab fa-orcid"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Links Rápidos') }}</h3>
+                <a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}">{{ _('Áreas de Pesquisa') }}</a>
+                <a href="{{ url_for('projetos', lang_code=lang_code) }}">{{ _('Projetos') }}</a>
+                <a href="{{ url_for('publicacoes', lang_code=lang_code) }}">{{ _('Publicações') }}</a>
+                <a href="{{ url_for('orientacoes', lang_code=lang_code) }}">{{ _('Orientações') }}</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Contato') }}</h3>
+                <p><i class="fas fa-envelope"></i> {{ professor.email }}</p>
+                <p><i class="fas fa-university"></i> {{ _('Universidade do Estado do Rio Grande do Norte (UERN)') }}</p>
+                <p><i class="fas fa-map-marker-alt"></i> {{ _('Natal, Rio Grande do Norte, Brasil') }}</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>{{ _('Áreas de Interesse') }}</h3>
+                {% if areas %}
+                    {% for area in areas[:4] %}
+                        <a href="{{ url_for('areas_pesquisa', lang_code=lang_code) }}#{{ area.id }}">{{ area['nome_' + lang_code] if area['nome_' + lang_code] else area.nome_pt }}</a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; {{ now.year }} {{ professor.nome }}. {{ _('Todos os direitos reservados.') }}</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
